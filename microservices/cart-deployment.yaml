@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cart-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cart
+  template:
+    metadata:
+      labels:
+        app: cart
+    spec:
+      containers:
+      - name: cart
+        image: omkarjois/cart:latest # Replace with the name of your Docker image for the cart microservice
+        ports:
+        - containerPort: 5003
+        env:
+          - name: AUTH_SERVICE_URL
+            value: "http://auth-service.default.svc.cluster.local"
+          - name: PRODUCT_SERVICE_URL
+            value: "http://products-service.default.svc.cluster.local"
+          - name: CART_SERVICE_URL
+            value: "http://cart-service.default.svc.cluster.local"
+          - name: ORDER_SERVICE_URL
+            value: "http://order-service.default.svc.cluster.local"

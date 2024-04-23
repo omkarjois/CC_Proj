@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: products
+  template:
+    metadata:
+      labels:
+        app: products
+    spec:
+      containers:
+      - name: products
+        image: omkarjois/product:latest # Replace with the name of your Docker image for the products microservice
+        ports:
+        - containerPort: 5002
+        env:
+          - name: AUTH_SERVICE_URL
+            value: "http://auth-service.default.svc.cluster.local:5007"
+          - name: PRODUCT_SERVICE_URL
+            value: "http://products-service.default.svc.cluster.local:5002"
+          - name: CART_SERVICE_URL
+            value: "http://cart-service.default.svc.cluster.local:5003"
+          - name: ORDER_SERVICE_URL
+            value: "http://order-service.default.svc.cluster.local:5004"

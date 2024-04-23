@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+      - name: order
+        image: omkarjois/order:latest # Replace with the name of your Docker image for the order microservice
+        ports:
+        - containerPort: 5004
+        env:
+          - name: AUTH_SERVICE_URL
+            value: "http://auth-service.default.svc.cluster.local:5007"
+          - name: PRODUCT_SERVICE_URL
+            value: "http://products-service.default.svc.cluster.local:5002"
+          - name: CART_SERVICE_URL
+            value: "http://cart-service.default.svc.cluster.local:5003"
+          - name: ORDER_SERVICE_URL
+            value: "http://order-service.default.svc.cluster.local:5004"
