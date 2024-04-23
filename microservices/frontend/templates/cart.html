@@ -1,29 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Shopping Cart</h1>
-    {% if cart_items %}
-        <ul>
-        {% for cart_item in cart_items %}
-            <li>
-                Product: {{ cart_item.product_name }}
-                Quantity: {{ cart_item.quantity }}
-                Price: ${{ cart_item.price }}
-            </li>
-        {% endfor %}
-        </ul>
-        <p>Total: ${{ total }}</p>
-        <form action="{{ url_for('checkout') }}" method="GET">
-            <input type="submit" value="Proceed to Checkout">
-        </form>
-    {% else %}
-        <p>Your cart is empty.</p>
-    {% endif %}
+    <nav class="navbar">
+        <div class="navbar-left">
+            <h1 class="title">Shopping Cart</h1>
+        </div>
+        <div class="navbar-right">
+            <a href="{{ url_for('home') }}" class="home-button">Home</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% if cart_items %}
+            <ul class="cart-list">
+                {% for cart_item in cart_items %}
+                    <li class="cart-item">
+                        <span class="item-info">
+                            Product: {{ cart_item.product_name }}
+                        </span>
+                        <span class="item-info">
+                            Quantity: {{ cart_item.quantity }}
+                        </span>
+                        <span class="item-info">
+                            Price: ${{ cart_item.price }}
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="total">
+                Total: ${{ total }}
+            </div>
+            <form action="{{ url_for('checkout') }}" method="GET">
+                <input type="submit" value="Proceed to Checkout" class="checkout-button">
+            </form>
+        {% else %}
+            <p class="empty-cart">Your cart is empty.</p>
+        {% endif %}
+    </div>
+
+    <footer class="footer">
+        &copy; 2024 Your Company Name
+    </footer>
 </body>
 </html>

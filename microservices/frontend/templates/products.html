@@ -1,29 +1,38 @@
-<!-- products.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Products</h1>
-    {% for product in products %}
-        <div>
-            <h3>{{ product.name }}</h3>
-            <p>Description: {{ product.description }}</p>
-            <p>Price: ${{ product.price }}</p>
-            <img src = "{{product.image_url}}" height = "300" width = "300">
-            <form method="POST" action="{{ url_for('add_to_cart', product_name=product.name, price=product.price) }}">
-                <input type="hidden" name="product_name" value="{{ product.name }}">
-                <input type="submit" value="Add to Cart">
-            </form>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <h1 class="title">Products</h1>
         </div>
-        <hr>
-    {% endfor %}
-    <div style="text-align: center; margin-top: 20px;">
-        <a href="{{ url_for('view_cart') }}" class="button">View Cart</a>
+        <div class="navbar-right">
+            <a href="{{ url_for('view_cart') }}" class="view-cart-button">View Cart</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% for product in products %}
+            <div class="product">
+                <h2>{{ product.name }}</h2>
+                <p class="description">Description: {{ product.description }}</p>
+                <p class="price">Price: ${{ product.price }}</p>
+                <img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-image">
+                <form method="POST" action="{{ url_for('add_to_cart', product_name=product.name, price=product.price) }}">
+                    <input type="hidden" name="product_name" value="{{ product.name }}">
+                    <input type="submit" value="Add to Cart" class="add-to-cart-button">
+                </form>
+            </div>
+        {% endfor %}
     </div>
+
+    <footer class="footer">
+        &copy; 2024 Your Company Name
+    </footer>
 </body>
 </html>
