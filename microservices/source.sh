@@ -1,5 +1,7 @@
 #!/bin/bash
+minikube start
 
+cd microservices
 # Apply Kubernetes deployment files
 kubectl apply -f auth-deployment.yaml
 kubectl apply -f cart-deployment.yaml
@@ -13,3 +15,5 @@ kubectl apply -f cart-service.yaml
 kubectl apply -f frontend-service.yaml
 kubectl apply -f order-service.yaml
 kubectl apply -f product-service.yaml
+
+minikube service frontend-service

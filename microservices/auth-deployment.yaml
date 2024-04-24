@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: auth
-        image: omkarjois/auth:latest # Replace with the name of your Docker image for the auth microservice
+        image: omkarjois/auth:latest 
         ports:
         - containerPort: 5007
         env:

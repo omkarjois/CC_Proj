@@ -1,13 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #e0e0e0, #ffffff); /* Subtle gradient covering the whole page */
+        }
+
+        .image-container {
+            flex: 1;
+            height: 100%;
+            position: relative; /* Add position relative */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            overflow: hidden; /* Hide overflow to prevent gradient from leaking */
+            padding: 50px 0; /* Add padding to top and bottom of the image */
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            color: #000000; /* Set text color to black */
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-family: 'Arial Rounded MT Bold', sans-serif;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 20px 40px; /* Increase padding to make button larger */
+            margin: 10px;
+            text-decoration: none;
+            color: #ffffff; /* Set text color to white */
+            font-size: 18px;
+            border-radius: 25px;
+            background-color: #c0c0c0; /* Lighter grey color */
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container a:hover {
+            background-color: #a0a0a0; /* Darker grey on hover */
+        }
+
+    </style>
 </head>
+
 <body>
-    <h1>Welcome to PESHOP</h1>
-    <p><a href="{{ url_for('login') }}">Login</a> | <a href="{{ url_for('register') }}">Register</a></p>
+    <div class="image-container">
+        <img src="https://cdn-icons-png.freepik.com/512/9721/9721972.png" alt="Background Image">
+    </div>
+    <div class="content-container">
+        <h1>Welcome to PESUKART</h1>
+        <div class="button-container">
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
+        </div>
+    </div>
 </body>
+
 </html>
